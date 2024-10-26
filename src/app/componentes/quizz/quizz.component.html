@@ -1,0 +1,18 @@
+<div class="quizz-container">
+  <h1>Qual o nome do time?</h1>
+
+  <div class="imagem-container" *ngIf="listaTimes && listaTimes.length > 0">
+    <img [src]="listaTimes[0].escudoPergunta" alt="Escudo do Time">
+  </div>
+
+  <!-- Card abaixo da imagem -->
+  <div class="resposta-card">
+    <label class="resposta-label">Responda corretamente:</label>
+    <div class="botoes-container">
+      <button *ngFor="let opcao of opcoes" class="opcao-botao">
+        {{ opcao }}
+      </button>
+    </div>
+  </div>
+</div>
+
