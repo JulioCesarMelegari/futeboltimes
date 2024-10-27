@@ -1,35 +1,62 @@
 <div class="quizz-container">
 
+<!-- Estrutura do modal -->
+<div class="modal-overlay" *ngIf="exibirModal">
+  <div class="modal-content">
+    <div class="imagem-container">
+      <img [src]="timeTela.escudoResposta" alt="Escudo do Time">
+    </div>
+    <h5>{{ timeTela.nome }}</h5>
+  </div>
+</div>
+
+<!-- Estrutura do modal2 -->
+<div class="modal-overlay" *ngIf="exibirModal2">
+  <div class="modal-content">
+    <h1>Pontuação:</h1>
+    <h1>{{ pontuacao }}</h1>
+    <label>Total Times:</label>
+    <h5>{{ totalTimes }}</h5>
+    <label>Total Acertos:</label>
+    <h5>{{ acertos }}</h5>
+    <label>Total Erros:</label>
+    <h5>{{ totalErros }}</h5>
+
+    <button class="reiniciar-botao" (click)="reiniciarJogo()">Reiniciar Jogo</button>
+  </div>
+</div>
+
+
+  <!-- Conteúdo principal do quiz -->
   <div class="inicio-card">
     <div class="titulo">
       <h1>Que time é esse?</h1>
     </div>
     <div class="pontos">
       <div>
-        <h1 >Placar</h1>
-        <h2>{{pontuacao}}</h2>
+        <h1>Placar</h1>
+        <h2>{{ pontuacao }}</h2>
       </div>
-
-      <div>
-        <h5>{{acertos}}/{{totalTimes}}</h5>
+      <div class="estatisticas">
+        <h5>{{ contador }}/{{ totalTimes }}</h5>
+        <h5>A: {{ acertos }}</h5>
+        <h5>E: {{ totalErros }}</h5>
       </div>
     </div>
-
   </div>
 
-  <div class="imagem-container" >
+  <div class="imagem-container">
     <img [src]="timeTela.escudoPergunta" alt="Escudo do Time">
   </div>
 
-  <!-- Card abaixo da imagem -->
+  <!-- Card com botões de resposta -->
   <div class="resposta-card">
     <label class="resposta-label">Qual sua Resposta?</label>
     <div class="botoes-container">
-      <button class="opcao-botao" (click)="onOpcaoClick(opcoes[0])">{{ opcoes[0] }}</button>
-      <button class="opcao-botao" (click)="onOpcaoClick(opcoes[2])">{{ opcoes[2] }}</button>
-      <button class="opcao-botao" (click)="onOpcaoClick(opcoes[1])">{{ opcoes[1] }}</button>
-      <button class="opcao-botao" (click)="onOpcaoClick(opcoes[3])">{{ opcoes[3] }}</button>
+      <button class="opcao-botao" (click)="onOpcaoClick(opcoes[0])" [disabled]="exibirModal || exibirModal2">{{ opcoes[0] }}</button>
+      <button class="opcao-botao" (click)="onOpcaoClick(opcoes[2])" [disabled]="exibirModal || exibirModal2">{{ opcoes[2] }}</button>
+      <button class="opcao-botao" (click)="onOpcaoClick(opcoes[1])" [disabled]="exibirModal || exibirModal2">{{ opcoes[1] }}</button>
+      <button class="opcao-botao" (click)="onOpcaoClick(opcoes[3])" [disabled]="exibirModal || exibirModal2">{{ opcoes[3] }}</button>
     </div>
   </div>
 </div>
-

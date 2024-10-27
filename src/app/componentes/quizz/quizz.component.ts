@@ -9,6 +9,7 @@ import { TimesserviceService } from 'src/app/timesservice.service';
   templateUrl: './quizz.component.html',
   styleUrls: ['./quizz.component.css']
 })
+
 export class QuizzComponent implements OnInit {
   listaTimes: TimeSocker[] = [];
   opcoes: string[] = [];
@@ -16,9 +17,13 @@ export class QuizzComponent implements OnInit {
   timeTela: TimeSocker = new TimeSocker();
   pontuacao: number = 0;
   acertos: number = 0;
-  indiceAtual: number = 0; // Adiciona um índice para rastrear o item atual
+  totalErros: number = 0;
+  indiceAtual: number = 0;
+  exibirModal: boolean = false;// Controla a visibilidade do modal
+  exibirModal2: boolean = false;
+  contador: number = 0;
 
-  constructor(private http: HttpClient, private service: TimesserviceService) {}
+  constructor(private service: TimesserviceService) {}
 
   ngOnInit(): void {
     this.service.getTimes().subscribe((response) => {
@@ -34,22 +39,18 @@ export class QuizzComponent implements OnInit {
     });
   }
 
-  // Define o timeTela com o time atual da lista usando o índice
   atualizarTimeTela(): void {
     this.timeTela = this.listaTimes[this.indiceAtual];
   }
 
-  // Conta o total de times
   contarTotalTimes(): void {
     this.totalTimes = this.listaTimes.length;
   }
 
-  // Gera opções para o time atual
   gerarOpcoes(): void {
     if (!this.timeTela || !this.timeTela.nome) return;
 
     const nomeTimeAtual = this.timeTela.nome;
-
     const nomesDosTimes = this.listaTimes
       .map((time) => time.nome)
       .filter((nome) => nome !== nomeTimeAtual);
@@ -59,33 +60,53 @@ export class QuizzComponent implements OnInit {
     this.opcoes = this.shuffleArray(this.opcoes);
   }
 
-  // Embaralha um array
   private shuffleArray(array: string[]): string[] {
     return array.sort(() => Math.random() - 0.5);
   }
 
-  // Lida com o clique nas opções e passa para o próximo time
   onOpcaoClick(nome: string): void {
     if (this.timeTela.nome === nome) {
       this.pontuacao += 10;
       this.acertos += 1;
+      this.contador +=1;
     } else {
       this.pontuacao -= 10;
+      this.totalErros += 1;
+      this.contador += 1;
     }
 
-    // Move para o próximo time
-    this.proximoTime();
+    // Exibe o modal e o fecha após 1,5 segundos
+    this.exibirModal = true;
+    setTimeout(() => {
+      this.exibirModal = false;
+      this.proximoTime(); // Move para o próximo time após fechar o modal
+    }, 1500);
   }
 
-  // Método para atualizar o timeTela para o próximo item na lista
   proximoTime(): void {
     this.indiceAtual++;
     if (this.indiceAtual < this.listaTimes.length) {
       this.atualizarTimeTela();
       this.gerarOpcoes();
     } else {
-      alert("Fim da lista de times.");
-      // Aqui, você pode exibir uma mensagem ou reiniciar o quiz, se desejar
+      this.exibirModal2 = true;
+
+    // Move para o próximo time após fechar o modal
     }
+
+  }
+
+
+  // Reinicia o jogo ao estado inicial
+  reiniciarJogo(): void {
+    this.pontuacao = 0;
+    this.acertos = 0;
+    this.totalErros = 0;
+    this.indiceAtual = 0;
+    this.contador = 0;
+    this.exibirModal = false;
+    this.exibirModal2 = false;
+    this.atualizarTimeTela();
+    this.gerarOpcoes();
   }
 }
