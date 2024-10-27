@@ -14,20 +14,62 @@
   {
     "id":3,
     "nome": "Santos",
-    "escudoPergunta":"assets/imagens/04.png",
-    "escudoResposta":"assets/imagens/05.png"
+    "escudoPergunta":"assets/imagens/05.png",
+    "escudoResposta":"assets/imagens/04.png"
   },
   {
     "id":4,
     "nome": "Cuiabá",
-    "escudoPergunta":"assets/imagens/06.png",
-    "escudoResposta":"assets/imagens/07.png"
+    "escudoPergunta":"assets/imagens/07.png",
+    "escudoResposta":"assets/imagens/06.png"
   },
   {
     "id":5,
     "nome": "Avaí",
-    "escudoPergunta":"assets/imagens/08.png",
-    "escudoResposta":"assets/imagens/09.png"
+    "escudoPergunta":"assets/imagens/09.png",
+    "escudoResposta":"assets/imagens/08.png"
+  },
+  {
+    "id":6,
+    "nome": "Arsenal",
+    "escudoPergunta":"assets/imagens/11.png",
+    "escudoResposta":"assets/imagens/10.png"
+  },
+  {
+    "id":7,
+    "nome": "São Paulo",
+    "escudoPergunta":"assets/imagens/12.png",
+    "escudoResposta":"assets/imagens/13.png"
+  },
+  {
+    "id":8,
+    "nome": "Ituano",
+    "escudoPergunta":"assets/imagens/15.png",
+    "escudoResposta":"assets/imagens/14.png"
+  },
+  {
+    "id":9,
+    "nome": "Grêmio",
+    "escudoPergunta":"assets/imagens/16.png",
+    "escudoResposta":"assets/imagens/17.png"
+  },
+  {
+    "id":10,
+    "nome": "Umuarama",
+    "escudoPergunta":"assets/imagens/18.png",
+    "escudoResposta":"assets/imagens/19.png"
+  },
+  {
+    "id":11,
+    "nome": "Juventus",
+    "escudoPergunta":"assets/imagens/20.png",
+    "escudoResposta":"assets/imagens/21.png"
+  },
+  {
+    "id":12,
+    "nome": "Atalanta",
+    "escudoPergunta":"assets/imagens/22.png",
+    "escudoResposta":"assets/imagens/23.png"
   }
 ]
 

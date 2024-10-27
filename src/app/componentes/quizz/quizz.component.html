@@ -1,17 +1,34 @@
 <div class="quizz-container">
-  <h1>Qual o nome do time?</h1>
 
-  <div class="imagem-container" *ngIf="listaTimes && listaTimes.length > 0">
-    <img [src]="listaTimes[0].escudoPergunta" alt="Escudo do Time">
+  <div class="inicio-card">
+    <div class="titulo">
+      <h1>Que time é esse?</h1>
+    </div>
+    <div class="pontos">
+      <div>
+        <h1 >Placar</h1>
+        <h2>{{pontuacao}}</h2>
+      </div>
+
+      <div>
+        <h5>{{acertos}}/{{totalTimes}}</h5>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="imagem-container" >
+    <img [src]="timeTela.escudoPergunta" alt="Escudo do Time">
   </div>
 
   <!-- Card abaixo da imagem -->
   <div class="resposta-card">
-    <label class="resposta-label">Responda corretamente:</label>
+    <label class="resposta-label">Qual sua Resposta?</label>
     <div class="botoes-container">
-      <button *ngFor="let opcao of opcoes" class="opcao-botao">
-        {{ opcao }}
-      </button>
+      <button class="opcao-botao" (click)="onOpcaoClick(opcoes[0])">{{ opcoes[0] }}</button>
+      <button class="opcao-botao" (click)="onOpcaoClick(opcoes[2])">{{ opcoes[2] }}</button>
+      <button class="opcao-botao" (click)="onOpcaoClick(opcoes[1])">{{ opcoes[1] }}</button>
+      <button class="opcao-botao" (click)="onOpcaoClick(opcoes[3])">{{ opcoes[3] }}</button>
     </div>
   </div>
 </div>
